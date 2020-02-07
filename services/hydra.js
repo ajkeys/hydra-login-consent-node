@@ -13,7 +13,7 @@ if (process.env.MOCK_TLS_TERMINATION) {
 // A little helper that takes type (can be "login" or "consent") and a challenge and returns the response from ORY Hydra.
 function get(flow, challenge) {
   const url = new URL('/oauth2/auth/requests/' + flow, hydraUrl)
-  url.search = querystring.stringify({[flow + '_challenge']: challenge})
+  url.search = querystring.stringify({ [flow + '_challenge']: challenge })
   return fetch(url.toString())
     .then(function (res) {
       if (res.status < 200 || res.status > 302) {
@@ -31,7 +31,7 @@ function get(flow, challenge) {
 // A little helper that takes type (can be "login" or "consent"), the action (can be "accept" or "reject") and a challenge and returns the response from ORY Hydra.
 function put(flow, action, challenge, body) {
   const url = new URL('/oauth2/auth/requests/' + flow + '/' + action, hydraUrl)
-  url.search = querystring.stringify({[flow + '_challenge']: challenge})
+  url.search = querystring.stringify({ [flow + '_challenge']: challenge })
   return fetch(
     // Joins process.env.HYDRA_ADMIN_URL with the request path
     url.toString(),

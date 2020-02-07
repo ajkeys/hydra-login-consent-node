@@ -15,7 +15,7 @@ router.get('/', csrfProtection, function (req, res, next) {
   var challenge = query.consent_challenge;
 
   hydra.getConsentRequest(challenge)
-  // This will be called if the HTTP request was successful
+    // This will be called if the HTTP request was successful
     .then(function (response) {
       // If a user has granted this application the requested scope, hydra will tell us to not show the UI.
       if (response.skip) {
@@ -91,7 +91,7 @@ router.post('/', csrfProtection, function (req, res, next) {
 
   // Seems like the user authenticated! Let's tell hydra...
   hydra.getConsentRequest(challenge)
-  // This will be called if the HTTP request was successful
+    // This will be called if the HTTP request was successful
     .then(function (response) {
       return hydra.acceptConsentRequest(challenge, {
         // We can grant all scopes that have been requested - hydra already checked for us that no additional scopes
@@ -102,7 +102,7 @@ router.post('/', csrfProtection, function (req, res, next) {
         session: {
           // This data will be available when introspecting the token. Try to avoid sensitive information here,
           // unless you limit who can introspect tokens.
-          // access_token: { foo: 'bar' },
+          access_token: { my_custom: 'value' },
 
           // This data will be available in the ID token.
           // id_token: { baz: 'bar' },
